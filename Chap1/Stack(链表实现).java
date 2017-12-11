@@ -5,7 +5,10 @@ public class Stack<Item> implements Iterable<Item>{
     private class Node{
         Item item;
         Node next;
+    }
 
+    public boolean isEmpty(){
+        return N == 0;
     }
     public int size(){
         return N;
