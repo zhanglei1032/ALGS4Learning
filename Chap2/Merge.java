@@ -17,8 +17,10 @@ public class Merge{
         merge(a, lo, mid, hi);
     }
 
+    //原地归并，借助aux数组辅助
     public static void merge(Comparable[] a, int lo, int mid, int hi){
         int i = lo, j = mid + 1;
+        //复制一份到aux数组
         for (int k = lo; k <= hi; k++ ) {
             aux[k] = a[k];
         }
