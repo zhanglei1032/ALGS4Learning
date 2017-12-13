@@ -3,15 +3,18 @@ public class Shell{
     public static void sort(Comparable[] a){
         int N = a.length;
         int h = 1;
+        //确定一个h值，常用的还有N/2
         while (h < N/3) {
             h = 3*h +1;
         }
         while (h >=1) {
+            //内部为步长为h的插入排序
             for (int i = h; i < N ; i++ ) {
                 for (int j = i; j >= h && less(a[j], a[j-h]); j-=h) {
                     exch(a, j, j-h);
                 }
             }
+            //缩小h
             h = h/3;
         }
     }
