@@ -4,6 +4,7 @@ public class Shell{
         int N = a.length;
         int h = 1;
         //确定一个h值，常用的还有N/2
+        //此处设为序列1,4,13,40,121,364,1093，...中的一个值
         while (h < N/3) {
             h = 3*h +1;
         }
