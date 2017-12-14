@@ -19,16 +19,21 @@ public class Merge{
 
     //原地归并，借助aux数组辅助
     public static void merge(Comparable[] a, int lo, int mid, int hi){
+        //i跟踪数组左半边，j跟踪数组右半边
         int i = lo, j = mid + 1;
         //复制一份到aux数组
         for (int k = lo; k <= hi; k++ ) {
             aux[k] = a[k];
         }
         for (int k = lo; k <= hi; k++ ) {
+            //此时左半边数组已经全部比较完，所以把右半边数组直接复制到a数组
             if (i > mid) {
                 a[k] = aux[j++];
+            //此时右半边数组已经全部比较完，所以把左半边数组直接复制到a数组
             } else if (j > hi) {
                 a[k] = aux[i++];
+            //真正的比较操作，左右两边数组分别比较到了aux[i]和aux[j]，
+            //把较大的元素放入a数组,然后i或j向后移动
             } else if (less(aux[j], aux[i])) {
                 a[k] = aux[j++];
             } else {
