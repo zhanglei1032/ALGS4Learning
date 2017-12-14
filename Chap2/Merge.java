@@ -33,7 +33,7 @@ public class Merge{
             } else if (j > hi) {
                 a[k] = aux[i++];
             //真正的比较操作，左右两边数组分别比较到了aux[i]和aux[j]，
-            //把较大的元素放入a数组,然后i或j向后移动
+            //把较小的元素放入a数组,然后i或j向后移动
             } else if (less(aux[j], aux[i])) {
                 a[k] = aux[j++];
             } else {
