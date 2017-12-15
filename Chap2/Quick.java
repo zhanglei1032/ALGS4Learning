@@ -9,30 +9,45 @@ public class Quick{
         if (hi <= lo) {
             return;
         }
+        //切分数组，a[lo]~a[j-1]的元素都比a[j]小，a[j+1]到a[hi]的元素都比a[j]大
         int j = partition(a, lo, hi);
         sort(a, lo, j-1);
         sort(a, j+1, hi);
     }
 
-    public static void partition(Comparable[] a, int lo, int hi){
+    public static int partition(Comparable[] a, int lo, int hi){
+        //左右扫描指针
         int i = lo, j = hi + 1;
+        //选定a[lo]为初始切分元素
         Comparable v = a[lo];
         while(true){
+            //扫描左右，检查扫描是否结束并交换元素
+            //第一个while循环，不断比较a[i]和v的大小，当a[i]大于v时退出
+            //此时a[i]为第一个比v大的元素
             while (less(a[++i], v)) {
+                //当v为数组最大素时的退出条件，
+                //此时所有的a[i]都小于v，i持续增长至hi，防止a[++i]访问越界
                 if (i == hi) {
                     break;
                 }
             }
+            //第二个while循环，不断比较a[j]和v的大小，当a[j]小于v时退出
+            //此时a[j]为第一个比v小的元素
             while (less(v, a[--j])) {
+                //当v为数组最小素时的退出条件，
+                //此时所有的a[i]都大于v，j持续减少至lo，防止a[--j]访问越界
                 if (j == lo) {
                     break;
                 }
             }
+            //i和j相遇时，退出循环
             if (i >=j) {
                 break;
             }
+            //交换逆序对a[i],a[j]
             exch(a, i, j);
         }
+        //将v=a[j]放入正确的位置
         exch(a, lo, j);
         return j;
     }
