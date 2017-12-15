@@ -25,7 +25,8 @@ public class Quick{
             //第一个while循环，不断比较a[i]和v的大小，当a[i]大于v时退出
             //此时a[i]为第一个比v大的元素
             while (less(a[++i], v)) {
-                //当v为数组最大素时的退出条件，
+                //当v为数组最大素时的退出条件，也可设置最大元素为哨兵元素，
+                //放在a[length-1]中，以去除此项检查
                 //此时所有的a[i]都小于v，i持续增长至hi，防止a[++i]访问越界
                 if (i == hi) {
                     break;
@@ -34,7 +35,7 @@ public class Quick{
             //第二个while循环，不断比较a[j]和v的大小，当a[j]小于v时退出
             //此时a[j]为第一个比v小的元素
             while (less(v, a[--j])) {
-                //当v为数组最小素时的退出条件，
+                //当v为数组最小素时的退出条件，j==lo的条件是冗余的，因为a[lo]=v
                 //此时所有的a[i]都大于v，j持续减少至lo，防止a[--j]访问越界
                 if (j == lo) {
                     break;
