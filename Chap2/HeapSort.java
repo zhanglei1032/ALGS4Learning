@@ -15,18 +15,18 @@ public class HeapSort{
 
     //下沉操作，交换k和它较大的子节点（为了保证父节点大于子节点）2k或2k+1，
     //直到它比新的子节点都大或者到达堆底
-    private void sink(int k){
-        while (2*k <= N){
-            int j = 2*k;
-            //如果右节点比较大，将待交换节点设为右节点（j+1）
-            if (j < N && less(j, j+1)) {
-                j++;
+    private void sink(Comparable[]a, int i, int j){
+        while (2*i <= j){
+            int k = 2*i;
+            //如果右节点比较大，将待交换节点设为右节点（k+1）
+            if (k < j && less(k, k+1)) {
+                k++;
             }
-            if (!less(k, j)) {
+            if (!less(i, k)) {
                 break;
             }
-            exch(k, j);
-            k = j;
+            exch(a, i, k);
+            i = k;
         }
     }
 
