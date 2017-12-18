@@ -1,4 +1,5 @@
 //基于有序数组的二分查找
+//使用两个数组，key数组存储comparable的值，value数组存储对应的值，此处存index
 public class BinarySearchST<Key extends Comparable<Key>, Value>{
     private Key[] keys;
     private Value[] vals;
