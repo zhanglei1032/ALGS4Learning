@@ -25,7 +25,10 @@ public class BinarySearchST<Key extends Comparable<Key>, Value>{
             return null;
         }
     }
-
+    //返回表中小于键key的键的数量
+    //对于命中查找返回时lo=hi=mid,返回的就是命中键的index，也就是小于key的键的数量
+    //对于非命中查找，返回时lo>hi=mid，
+    //返回的是数组中比查找元素小的最大元素的index，也就是小于key的键的数量
     public int rank(Key key){
         int lo = 0, hi = N - 1;
         while (lo <= hi) {
@@ -56,6 +59,28 @@ public class BinarySearchST<Key extends Comparable<Key>, Value>{
         vals[i] = val;
         N++;
     }
+
+    public Key min(){
+        return keys[0];
+    }
+
+    public Key max(){
+        return keys[N-1];
+    }
+
+    public Key select(int k){
+        return keys[k];
+    }
+
+    public Key ceiling(Key key){
+        int i = rank(key);
+        return keys[i];
+    }
+
+    public Key floor(Key key){
+
+    }
+
     //delete为自己实现的
     public void delete(Key key){
         if (isEmpty()) {
@@ -68,5 +93,16 @@ public class BinarySearchST<Key extends Comparable<Key>, Value>{
            keys[i] = null;
            vals[i] = null;
         }
+    }
+
+    public Iterable<key> keys(Key lo, Key hi){
+        Queue<Key> q = new Queue<Key>();
+        for (int i = rank(lo); i < rank(hi) ; i++) {
+            q.enqueue(keys[i]);
+        }
+        if (contains(hi)) {
+            q.enqueue(keys[rank(hi)]);
+        }
+        return q;
     }
 }
