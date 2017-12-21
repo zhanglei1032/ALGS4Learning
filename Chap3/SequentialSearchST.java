@@ -1,3 +1,4 @@
+//基于链表的无序查找
 public class SequentialSearchST<Key, Value>{
     private Node first;
     private class Node {
