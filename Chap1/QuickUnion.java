@@ -26,7 +26,12 @@ public class QuickUnion{
     }
 
     public void union(int p, int q){
-        int root
+        int pRoot = find(p);
+        int qRoot = find(q);
+        if (pRoot == qRoot) {
+            return;
+        }
+        id[pRoot] = qRoot;
         count--;
     }
 
