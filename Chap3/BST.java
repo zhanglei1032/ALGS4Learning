@@ -88,7 +88,8 @@ public class BST<Key extends Comparable<Key>, Value>{
         }
         return x.key;
     }
-
+    //如果key大于二叉树根节点，那么只有当根节点右子树中存在小于等于key的节点时，
+    //小于等于key的最大值才存在在右子树，否则小于等于key的最大值为根节点本身
     private Node floor(Node x, Key key){
         if (x == null) {
             return null;
@@ -112,13 +113,17 @@ public class BST<Key extends Comparable<Key>, Value>{
     }
 
     private Node select(Node x, int k){
+        //返回排名为k的节点
         if (x == null) {
             return null;
         }
+        //t为小于节点x的节点的数量
         int t = size(x.left);
         if (t > k) {
             return select(x.left, k);
         } else if (t < k) {
+        //从右子树中选择比x.right大k-t-1的节点
+        //因为x.right排名本身就比x大1    
             return select(x.right, k-t-1);
         } else {
             return x;
@@ -137,6 +142,7 @@ public class BST<Key extends Comparable<Key>, Value>{
         if (cmp < 0) {
             return rank(key, x.left);
         } else if (cmp > 0) {
+            //因为x.right排名本身就比x大1，所以需要加1
             return 1 + size(x.left) + rank(key, x.right);
         } else {
             return size(x.left);
