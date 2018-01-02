@@ -3,7 +3,7 @@ public class WeightedQuickUnion{
     private int[] sz;//（由触点索引的）各个根节点所对应的分量的大小
     private int count;
 
-    //初始化分量id数组，长度为元素个数
+    //初始化分量id数组和根节点大小数组，长度为元素个数
     public WeightedQuickUnion(int N){
         count = N;
         id = new int [N];
@@ -38,13 +38,15 @@ public class WeightedQuickUnion{
         if (pRoot == qRoot) {
             return;
         }
-        //pq不连通，把q的根节点赋给id[pRoot]，pRoot成为qRoot的子树
-        if (sz[i] < sz[j]) {
-            id[i] = j;
-            sz[j] += sz[i];
+        //pq不连通，p所在的树节点比较少的时候，把q的根节点赋给p的根节点
+        //p成为qRoot的子树，否则把p的根节点赋给q，q成为pRoot的子树
+        //更细根节点大小数组的值
+        if (sz[pRoot] < sz[qRoot]) {
+            id[pRoot] = qRoot;
+            sz[qRoot] += sz[pRoot];
         } else {
-            id[j] = i;
-            sz[i] += sz[j];
+            id[qRoot] = pRoot;
+            sz[pRoot] += sz[qRoot];
         }
         count--;
     }
