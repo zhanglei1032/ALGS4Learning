@@ -9,10 +9,6 @@ public class LinearProbingHashST<Key, Value>{
         vals = (Value[]) new Object[M];
     }
 
-    private void resize(){
-
-    }
-
     private int hash(Key key){
         return (key.hashCode() & 0x7fffffff) % M;
     }
